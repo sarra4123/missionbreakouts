@@ -1,0 +1,432 @@
+/* Réinitialisation des marges et des remplissages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles pour le corps du document */
+body {
+    font-family: 'Roboto', sans-serif; /* Définit la police de caractères du corps */
+    height: 100vh; /* Définit la hauteur du corps à 100% de la hauteur de la fenêtre */
+    display: flex; /* Active la mise en page flexbox */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    overflow: hidden; /* Empêche le défilement */
+    background-color: #000; /* Définit la couleur d'arrière-plan en noir */
+    color: #ffffff69; /* Définit la couleur du texte en blanc semi-transparent */
+}
+
+/* Styles pour les sections */
+.section {
+    position: relative; /* Permet de positionner les éléments par rapport à leurs parents */
+    width: 100%; /* Définit la largeur des sections à 100% */
+    height: 100%; /* Définit la hauteur des sections à 100% */
+    display: none; /* Masque toutes les sections par défaut */
+}
+
+/* Styles pour les sections actives */
+.section.active {
+    display: flex; /* Active la mise en page flexbox pour la section active */
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    /* height: 100vh; */  /* Conserve la hauteur de la section à 100% de la hauteur de la fenêtre */ 
+    /* Attention, la hauteur de la section est définie par les éléments internes, si les éléments sont trop grands, la section sera agrandie. */
+}
+
+/* Styles pour les vidéos */
+video {
+    position: fixed; /* Fixe les vidéos au corps du document */
+    top: 0; /* Positionne les vidéos en haut */
+    left: 0; /* Positionne les vidéos à gauche */
+    width: 100%; /* Définit la largeur des vidéos à 100% */
+    height: 100%; /* Définit la hauteur des vidéos à 100% */
+    object-fit: cover; /* Ajuste les vidéos pour qu'elles couvrent toute la zone */
+    z-index: -1; /* Place les vidéos en arrière-plan des autres éléments */
+}
+
+/* Styles pour les conteneurs */
+.container {
+    position: relative; /* Permet de positionner les éléments par rapport à leurs parents */
+    display: flex; /* Active la mise en page flexbox */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    height: 100%; /* Définit la hauteur du conteneur à 100% */
+    z-index: 1; /* Place le conteneur au-dessus des vidéos */
+}
+
+/* Styles pour le contenu */
+.content {
+    background-color: rgba(0, 0, 0, 0.8); /* Définit la couleur d'arrière-plan du contenu en noir semi-transparent */
+    padding: 30px; /* Définit l'espacement interne */
+    border-radius: 15px; /* Définit les coins arrondis */
+    text-align: center; /* Centre le texte */
+    border: 1px solid rgba(255, 0, 0, 0.434); /* Définit une bordure rouge semi-transparente */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(0, 255, 255, 0.6); /* Définit l'ombre portée */
+}
+
+/* Styles pour les titres */
+h1 {
+    font-size: 24px; /* Définit la taille de la police */
+    margin-bottom: 20px; /* Définit la marge inférieure */
+    text-transform: uppercase; /* Met le texte en majuscules */
+    color: #ff0000; /* Définit la couleur du texte en rouge */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Définit l'ombre du texte */
+}
+
+/* Styles pour les champs de saisie de mot de passe */
+input[type="password"] {
+    padding: 15px; /* Définit l'espacement interne */
+    font-size: 18px; /* Définit la taille de la police */
+    margin: 20px 0; /* Définit la marge */
+    border: 2px solid #ff0000; /* Définit une bordure rouge */
+    border-radius: 5px; /* Définit les coins arrondis */
+    background-color: rgba(0, 0, 0, 0.5); /* Définit la couleur d'arrière-plan en noir semi-transparent */
+    color: #ff0000; /* Définit la couleur du texte en rouge */
+    width: 80%; /* Définit la largeur du champ */
+    text-align: center; /* Centre le texte */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); /* Définit l'ombre portée */
+    transition: all 0.3s ease; /* Définit une transition d'animation */
+}
+
+/* Styles pour les champs de saisie de mot de passe afichage  */
+
+.password-container {
+    position: relative; /* Permet de positionner l'icône par rapport à l'input */
+    display: flex; /* Permet d'aligner l'input et l'icône côte à côte */
+    align-items: center; /* Aligne verticalement l'input et l'icône */
+    width: 80%; /* Assure que la largeur du conteneur est la même que celle de l'input */
+    margin: 20px 0; /* Marge autour du conteneur */
+}
+
+input[type="password"], input[type="text"] {
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ff0000;
+    width: 100%; /* L'input prend toute la largeur du conteneur */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.toggle-password {
+    position: absolute; /* Positionne l'icône à l'intérieur du conteneur */
+    right: 15px; /* Distance de l'icône du côté droit du conteneur */
+    cursor: pointer; /* Change le curseur au survol */
+    color: #ff0000; /* Couleur de l'icône */
+    transition: color 0.3s ease; /* Transition de couleur pour l'effet de survol */
+}
+
+.toggle-password:hover {
+    color: #ffffff; /* Change la couleur de l'icône au survol */
+}
+
+
+
+
+/* Styles pour les boutons */
+button {
+    padding: 15px 30px; /* Définit l'espacement interne */
+    font-size: 18px; /* Définit la taille de la police */
+    background-color: transparent; /* Définit la couleur d'arrière-plan en transparent */
+    color: #ffffff; /* Définit la couleur du texte en rouge */
+    border: 2px solid #ff0000; /* Définit une bordure rouge */
+    border-radius: 5px; /* Définit les coins arrondis */
+    cursor: not-allowed; /* Définit le curseur en "pas autorisé" */
+    text-transform: uppercase; /* Met le texte en majuscules */
+    letter-spacing: 2px; /* Définit l'espacement entre les lettres */
+    transition: all 0.3s ease; /* Définit une transition d'animation */
+    position: relative; /* Permet de positionner les éléments par rapport à leurs parents */
+    overflow: hidden; /* Empêche le débordement */
+}
+
+/* Styles pour les boutons au survol */
+button:hover {
+    background-color: rgba(255, 0, 0, 0.3); /* Définit la couleur d'arrière-plan en rouge semi-transparent */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Modifie l'ombre portée au survol */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Définit une transition d'animation */
+}
+
+/* Styles pour les boutons actifs */
+button.active {
+    cursor: pointer; /* Définit le curseur en pointeur */
+    background-color: #ff0000; /* Change la couleur d'arrière-plan en rouge */
+    box-shadow: 0 0 20px rgb(239, 0, 0); /* Modifie l'ombre portée pour les boutons actifs */
+}
+
+/* Styles pour les boutons actifs au survol */
+#passwordSubmitBtn.active:hover {
+    background-color: rgba(255, 0, 0, 0.7); /* Définit la couleur d'arrière-plan en rouge semi-transparent */
+    box-shadow: 0 0 20px rgb(255, 0, 0); /* Modifie l'ombre portée au survol */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Définit une transition d'animation */
+}
+
+/* Styles pour les messages d'erreur */
+#passwordMessage {
+    color: red; /* Définit la couleur du texte en rouge */
+    margin-top: 10px; /* Définit la marge supérieure */
+}
+
+/* Styles pour l'image du résultat */
+#resultImage {
+    width: 300px; /* Définit la largeur de l'image */
+    height: auto; /* Définit la hauteur de l'image automatiquement pour conserver les proportions */
+}
+
+/* Styles pour les lignes de photos */
+.photo-row {
+    display: flex; /* Active la mise en page flexbox */
+    justify-content: center; /* Centre horizontalement le contenu */
+    margin: 10px 0; /* Définit la marge */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Définit une bordure rouge semi-transparente */
+    padding: 10px; /* Définit l'espacement interne */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Définit l'ombre portée */
+}
+
+/* Styles pour les photos */
+.photo {
+    width: 100px; /* Définit la largeur des photos */
+    height: 100px; /* Définit la hauteur des photos */
+    margin: 10px; /* Définit la marge */
+    cursor: pointer; /* Définit le curseur en pointeur */
+    transition: all 0.3s ease; /* Définit une transition d'animation */
+}
+
+/* Styles pour les photos au survol */
+.photo:hover {
+    transform: scale(1.2); /* Agrandit les photos au survol */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Modifie l'ombre portée au survol */
+}
+
+/* Styles pour le footer */
+footer {
+    position: absolute; /* Permet de positionner les éléments par rapport à leurs parents */
+    bottom: 10px; /* Positionne le footer en bas */
+    width: 100%; /* Définit la largeur du footer à 100% */
+    text-align: center; /* Centre le texte */
+    color: #c0bfbf69; /* Définit la couleur du texte en blanc semi-transparent */
+}
+
+
+.nextbutton1 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #191716; /* Couleur initiale */
+    border: none;
+    border-radius: 8px; /* Coins arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Animation fluide */
+}
+
+.nextbutton1:hover {
+    background-color: #c60000; /* Couleur au survol */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Ombre au survol */
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #181818;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .quiz-container {
+    background-color: #282828;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    max-width: 80%;
+    min-width: 300px;
+  }
+  
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .centered {
+    text-align: center;
+  }
+  
+  .password-input {
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #383838;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .password-input::placeholder {
+    color: #777;
+  }
+  
+  button {
+    background-color: #8a0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  button:hover {
+    background-color: #a00000;
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  #questionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .option {
+    padding: 15px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #383838;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  .option:hover, .option.selected {
+    background-color: #484848;
+    transform: scale(1.02);
+  }
+  
+  .option.correct {
+    background-color: #4CAF50 !important;
+  }
+  
+  .option.incorrect {
+    background-color: #F44336 !important;
+  }
+  
+  .progress {
+    background-color: #666;
+    height: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  #progressBar {
+    height: 10px;
+    background-color: #8a0000;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+  }
+
+
+
+  /* page de debut */
+  #logo {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.1) rotate(0deg) translateZ(10px);
+    filter: drop-shadow(0 0 10px rgba(222, 36, 7, 0.7)) brightness(1.2);
+}
+
+.start-button {
+    font-size: 24px;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #ff0000, #ff4b2b);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.start-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff4b2b, #ff0000);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.start-button:hover::before {
+    transform: scaleX(1);
+}
+
+.start-button:hover {
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 75, 43, 0.6), 0 0 40px rgba(255, 65, 108, 0.6);
+    transform: translateY(-3px);
+}
+
+#startScreen {
+    text-align: center;
+    padding-top: 20vh;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+}

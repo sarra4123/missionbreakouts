@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mission Breakout</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Écran de démarrage -->
+    <div id="startScreen">
+    
+        <img id="logo" src="logo.png" alt="Logo du Jeu" />
+        <button class="start-button" id="startButton">بدء</button>
+        <video autoplay muted loop id="firstPuzzleVideo">
+            <source src="backround.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <!-- Première énigme -->
+    <div id="firstPuzzle" class="section" style="display: none;">
+        <video autoplay muted loop id="firstPuzzleVideo">
+            <source src="backround.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="container">
+            <div class="content">
+                <h1> تأمل هذا العالم في سقوط التفاحة من الشجرة، واكتشف سرًا عظيمًا يتحكم في الكون:
+                     قوة الجاذبية التي تجعلنا ثابتين على الأرض، والتي تحرك الكواكب والنجوم في مساراتها. فمن يكون هذا العالم</h1>
+                <div class="password-container">
+                    <input type="password" id="passwordInput" placeholder="Mot de passe">
+                    <span id="togglePassword" class="toggle-password">👁️</span>
+                </div>
+                <button id="submitBtn" disabled>Breakout</button>
+                <div id="messag"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section de transition pour la première énigme -->
+    <div id="transitionVideoSection" class="section" style="display: none;">
+        <video id="transitionVideo" preload="auto">
+            <source src="enig1Trans.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <!-- Section de vidéo finale pour la première énigme -->
+    <div id="finalVideoSection" class="section" style="display: none;">
+        <video id="finalVideo" autoplay muted>
+            <source src="enig1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>  
+    </div>
+
+    <!-- Deuxième énigme -->
+    <div id="secondPuzzle" class="section" style="display: none;">
+        <video autoplay muted loop id="secondPuzzleVideo">
+            <source src="backround.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <div class="content">
+                <h1>هل كان من الممكن حل اللغز على جهاز الكمبيوتر السابق؟ ... من أنا، الإجابة باللغة الإنجليزية ؟</h1>
+                <div class="password-container">
+                    <input type="password" id="passwordInput2" placeholder="Mot de passe">
+                    <span id="togglePassword2" class="toggle-password">👁️</span>
+                </div> 
+                
+                <button id="passwordSubmitBtn">Valider</button>
+                <div id="passwordMessag"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section de photos pour la deuxième énigme -->
+    <div id="photoSection" class="section" style="display: none;">
+        <video id="backgroundVideo" autoplay muted loop>
+            <source src="backround.mp4" type="video/mp4">
+        </video>
+        <div id="photoRow" class="photo-row"></div>
+        <div id="dropRow" class="photo-row"></div>
+        <button id="resetBtn">Réinitialiser</button>
+        <button id="submitOrderBtn" onclick="checkOrder()" > Soumettre</button>
+        <div id="messag"></div>
+        <div id="result" style="display:none;">
+            <h2>Congratulations, you've made it!</h2>
+        </div>
+        <div id="videContainer" style="display:none;">
+            <video id="lvVideo" preload="auto">
+                <source src="enig2Tans.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Section de vidéo finale pour la deuxième énigme -->
+    <div id="finalVideSection" class="section" style="display: none;">
+        <video id="finalVide" autoplay muted loop>
+            <source src="enig2.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <button id="nextButton2">التالي</button> 
+    </div>
+
+    <!-- 3ème énigme -->
+    <div id="thirdPuzzle" class="section" style="display: none;">
+        <video autoplay muted loop id="thirdPuzzleVideo">
+            <source src="backround.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="container">
+            <div class="content">
+                <h1> هل تمكنت من فهم الرسالة المشفرة على جهاز الكمبيوتر السابق؟ </h1>
+                <div class="password-container">
+                    <span id="togglePassword3" class="toggle-password">👁️</span>
+                    <input type="password" id="password" placeholder="Mot de passe">
+                </div>
+                <button id="submitBtn3" disabled>Valider</button>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section de transition pour la troisième énigme -->
+    <div id="transitionVideoSection3" class="section" style="display: none;">
+        <video id="transitionVideo3" preload="auto">
+            <source src="transa.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <!-- Section de vidéo finale pour la troisième énigme -->
+    <div id="finalVideoContainer3" class="section" style="display: none;">
+        <video id="finalVideo3" autoplay muted>
+            <source src="drone.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <!-- Musique de fond -->
+    <audio id="backgroundMusic" loop>
+        <source src="epicmusic.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <!-- Écran de chargement -->
+    <div id="loadingScreen" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Chargement...</p>
+    </div>
+    
+    <!-- Quatrième énigme -->
+    <div id="fourthPuzzle" class="section" style="display:none;">
+        <video autoplay muted loop id="fourthPuzzleVideo">
+            <source src="backround.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="overlay">
+            <div class="quiz-container">
+                <div id="passwordSection" class="centered">
+                    <h1>أدخل كلمة المرور للبدء</h1>
+                    <input type="password" id="password4" placeholder="كلمة المرور" class="password-input">
+                    <button id="submitBtn4" disabled>دخول</button>
+                    <div id="message4"></div>
+                </div>
+
+                <div id="quizSection" style="display:none;">
+                    <div id="questionContainer">
+                        <h2 id="question"></h2>
+                        <div id="options"></div>
+                    </div>
+                    <button id="nextBtn" style="display:none;">التالي</button>
+                    <div id="scoreContainer" style="display:none;">
+                        <h3>نقاطك: <span id="score">0</span> / 50</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('firstPuzzle').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
